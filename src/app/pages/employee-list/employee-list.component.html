@@ -1,0 +1,34 @@
+<!-- lista de empleados que viene de la api cargando cada empleado en una card con input-->
+<section class="container mt-3">
+  <h2>Lista de Empleados</h2>
+  <hr>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Nombre Completo</th>
+          <th scope="col" class="d-none d-sm-table-cell">Email</th>
+          <th scope="col">#</th>
+          <th scope="col">#</th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for( employee of arrEmployees; track employee._id ){
+        <tr>
+          <td>{{ employee.nombre}} {{employee.apellidos}}</td>
+          <td class="d-none d-sm-table-cell">{{employee.email}}</td>
+          <td><a class="btn btn-info" [routerLink]="['/dashboard', 'empleado', employee._id]"><i
+                class="fa-solid fa-eye"></i></a>
+          </td>
+          <td><a class="btn btn-warning" [routerLink]="['/dashboard', 'actualizar-empleado',  employee._id]"><i
+                class="fa-solid fa-pen-to-square"></i></a></td>
+          <td><button class="btn btn-danger" (click)="delete(employee._id)"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</section>

@@ -1,0 +1,9 @@
+<section class="container mt-3">
+  <h1>{{employee?.nombre}} {{employee?.apellidos}}</h1>
+  <hr>
+  <h5><strong>Email </strong> <a [href]="'mailto:'+ employee?.email">{{employee?.email}}</a></h5>
+  <h5><strong>Salario </strong> {{employee?.salario}} € / anuales</h5>
+  <h5><strong>Telefono </strong> <a [href]="'tel:'+ employee?.telefono">{{employee?.telefono}}</a></h5>
+  <h5><strong>Departamento </strong> {{employee?.departamento}}</h5>
+  <a class="btn btn-outline-success" [routerLink]="['/dashboard', 'empleados']">Lista de empleados</a>
+</section>

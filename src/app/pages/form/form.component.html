@@ -1,0 +1,48 @@
+<section class="container mt-3">
+  <div class="card shadow p-5">
+    <h3>{{tipo}} un empleado</h3>
+    <hr>
+    <form [formGroup]="employeeForm" (ngSubmit)="getDataForm()">
+      <div class="my-3">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input class="form-control" type="text" id="nombre" formControlName="nombre" placeholder="introduce el nombre">
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="apellidos">Apellidos</label>
+        <input class="form-control" type="text" id="apellidos" formControlName="apellidos"
+          placeholder="introduce el apellidos">
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="telefono">Telefono</label>
+        <input class="form-control" type="text" id="telefono" formControlName="telefono"
+          placeholder="introduce el telefono">
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="text" id="email" formControlName="email" placeholder="introduce el email">
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="salario">Salario</label>
+        <input class="form-control" type="number" min="0" id="salario" formControlName="salario"
+          placeholder="introduce el salario">
+      </div>
+
+      <div class="my-3">
+        <label class="form-label" for="departamento">Departamento</label>
+        <input class="form-control" type="text" min="0" id="departamento" formControlName="departamento"
+          placeholder="introduce el departamento">
+      </div>
+
+      <div class="my-3">
+        <input type="submit" [value]="tipo" class="btn btn-danger">
+      </div>
+    </form>
+    @for( error of errorForm; track $index ){
+    <p class="text-danger">{{error.field}}: {{error.message}}</p>
+    }
+  </div>
+</section>
