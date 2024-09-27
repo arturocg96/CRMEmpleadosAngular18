@@ -1,6 +1,20 @@
 <section class="bg-dark p-3 d-flex flex-column justify-content-center align-items-center vh-100">
   <div class="card p-5 bg-light">
     <h1 class="py-3 px-5 border-danger border-3 border-bottom">Bienvenido su CRM de empleados</h1>
-    <a [routerLink]="['/dashboard']" class="btn btn-danger mt-4">Lista de empleados</a>
+    <form #loginForm="ngForm" (ngSubmit)="getLoginData(loginForm.value, loginForm)">
+      <div class="my-2">
+        <label for="email" class="form-label">Email</label>
+        <input class="form-control" type="text" id="email" name="email" ngModel>
+      </div>
+      <div class="my-2">
+        <label for="password" class="form-label">Password</label>
+        <input class="form-control" type="password" id="password" name="password" ngModel>
+      </div>
+      <input class="btn btn-danger" type="submit" value="Login">
+      @if(error === true){
+      <p class="mt-3 text-center text-danger small">{{msg}}</p>
+      }
+
+    </form>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IEmployee } from '../interfaces/iemployee.interface';
 import { firstValueFrom } from 'rxjs';
@@ -15,6 +15,13 @@ export class EmployeesService {
    * return Promise<IEmployee[]>
    */
   getAll(): Promise<IEmployee[]> {
+    //opcion 1: si cada peticion tiene un cabecera distinta hay que crearla dentro de la peticion.
+    // const httpOption = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Authorization': localStorage.getItem('token') || ""
+    //   })
+    // }
     return firstValueFrom(this.http.get<IEmployee[]>(this.baseUrl))
   }
 
@@ -54,5 +61,15 @@ export class EmployeesService {
     return firstValueFrom(this.http.put<IEmployee>(`${this.baseUrl}${id}`, body))
   }
 
+  //opcion 2: creo una funcion interceptora que devuelve las cabeceras para este servicio.
+  getAuthorization() {
+    const httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token') || ""
+      })
+    }
+    return httpOption
+  }
 
 }
